@@ -1,9 +1,22 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonButton,
+} from '@ionic/react';
+
 import './Tab1.css';
 
 const Tab1: React.FC = () => {
+  const throwError = () => decodeURIComponent('%');
+  const syntaxError = () => eval('foo bar');
+  const rangeError = () => {
+    var someArray = [{ func: function () {}}];
+    someArray[1].func();
+  };
   return (
     <IonPage>
       <IonHeader>
@@ -17,7 +30,9 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Tab 1</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+        <IonButton onClick={throwError}>Decode</IonButton>
+        <IonButton onClick={syntaxError}>Syntax</IonButton>
+        <IonButton onClick={rangeError}>Range</IonButton>
       </IonContent>
     </IonPage>
   );
