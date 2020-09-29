@@ -6,6 +6,7 @@ SENTRY_ORG=mike-hartington
 SENTRY_PROJECT=react
 VERSION=`sentry-cli releases propose-version`
 SOURCEMAP_LOCATION?=build/static/js
+
 setup_release: config build create_release associate_commits
 
 create_release:
@@ -16,7 +17,7 @@ associate_commits:
 
 upload_sourcemaps:
 	sentry-cli releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) files \
-		$(VERSION) upload-sourcemaps --url-prefix="/static/js/" --rewrite --validate $(SOURCEMAP_LOCATION)
+		$(VERSION) upload-sourcemaps --url-prefix="~/static/js/" --rewrite --validate $(SOURCEMAP_LOCATION)
 
 config:
 	@echo "react_app_sentry_release=${VERSION}" > .env
