@@ -16,7 +16,7 @@ associate_commits:
 
 upload_sourcemaps:
 	sentry-cli releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) files \
-		$(VERSION) upload-sourcemaps   --rewrite --validate $(SOURCEMAP_LOCATION)
+		$(VERSION) upload-sourcemaps --url-prefix="/static/js/" --rewrite --validate $(SOURCEMAP_LOCATION)
 
 config:
 	@echo "react_app_sentry_release=${VERSION}" > .env
