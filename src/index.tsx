@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
 import * as Sentry from "@sentry/react";
+
 
 Sentry.init({
   dsn: "https://c7031313ddb8454d8a12f5b4da20895f@o437425.ingest.sentry.io/5439241",
   release: process.env.react_app_sentry_release,
 });
+
 
 const PATH_STRIP_RE = /(http|capacitor):\/\/localhost/;
 function normalizeUrl(url: string, pathStripRe: RegExp): string {
@@ -33,7 +34,6 @@ Sentry.addGlobalEventProcessor((data: any) => {
       }
     });
   }
-  console.log(data);
   return data;
 });
 
