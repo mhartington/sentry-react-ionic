@@ -11,10 +11,12 @@ Sentry.init({
 });
 
 
-const PATH_STRIP_RE = /(http|capacitor):\/\/localhost/;
+const PATH_STRIP_RE = /capacitor:\/\/localhost/;
 function normalizeUrl(url: string, pathStripRe: RegExp): string {
   return url.replace(pathStripRe, "");
 }
+
+
 Sentry.addGlobalEventProcessor((data: any) => {
   if (data.culprit) {
     data.culprit = normalizeUrl(data.culprit, PATH_STRIP_RE);
